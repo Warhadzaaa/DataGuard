@@ -1,0 +1,10 @@
+<div class="container">
+  <div class="formulaire">
+    <h2>New employee</h2>
+      <%= simple_form_for [@employee] do |f| %>
+        <%= f.input :name %>
+        <%= f.input :unit %>
+        <%= f.button :submit, class: "button" %>
+      <% end %>
+  </div>
+</div>

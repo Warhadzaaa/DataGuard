@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  root to: "pages#home"
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  root to: "employees#index"
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  resources :employees, except: %i[show destroy]
+  delete "employees/:id", to: "employees#destroy", as: :destroy_employee
+
+  resources :employees, only: [] do
+    member do
+      patch :set_table
+    end
+  end
 end

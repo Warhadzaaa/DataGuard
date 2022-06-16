@@ -1,0 +1,20 @@
+<div class="container-2">
+  <div class="index_candidates">
+    <% @employees.each do |employee| %>
+      <div class="card_candidate">
+        <h2><%= employee.name %></h2>
+        <h3><%= employee.unit %></h3>
+        <%= link_to 'delete', destroy_employee_path(employee), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn-details mt-5" %>
+        <%= link_to 'edit', edit_employee_path(employee), class: "btn-details mt-5" %>
+      </div>
+    <% end %>
+  </div>
+  <div class="card_new_project d-flex">
+    <%= link_to new_employee_path do %>
+      <span style="color: #FF8A85">
+        <i class="fa-solid fa-circle-plus fa-2xl fa-spin" style="--fa-animation-duration: 15s;"></i>
+      </span>
+      <p> add an employee</p>
+    <% end %>
+  </div>
+</div>
