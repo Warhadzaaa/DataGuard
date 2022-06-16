@@ -1,20 +1,38 @@
 <div class="container-2">
-  <div class="index_candidates">
-    <% @employees.each do |employee| %>
-      <div class="card_candidate">
-        <h2><%= employee.name %></h2>
-        <h3><%= employee.unit %></h3>
-        <%= link_to 'delete', destroy_employee_path(employee), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn-details mt-5" %>
-        <%= link_to 'edit', edit_employee_path(employee), class: "btn-details mt-5" %>
-      </div>
+  <div class="container-2">
+    <h1>Tables</h1>
+    <% if @employees.count.positive? %>
+      <%= button_to "set tables", set_table_employee_path(@employees), method: :patch, class: "btn-archive mt-3" %>
     <% end %>
+    <div class="index_candidates">
+      <% tables = [] %>
+      <% @employees.each do |employee| %>
+        <% tables << employee.table if tables.exclude?(employee.table) && employee.table != 0 %>
+      <% end %>
+      <% tables.each do |number| %>
+        <div class="card_candidate">
+          <h2><%= "Table #{number}" %></h2>
+          <br>
+          <% @employees.where(table: number).each do |employee| %>
+            <h3><%= employee.name %></h3>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <div class="card_new_project d-flex">
-    <%= link_to new_employee_path do %>
-      <span style="color: #FF8A85">
-        <i class="fa-solid fa-circle-plus fa-2xl fa-spin" style="--fa-animation-duration: 15s;"></i>
-      </span>
-      <p> add an employee</p>
-    <% end %>
+
+  <div class="container-2">
+    <h1>Employees</h1>
+    <%= link_to "add employee", new_employee_path, class: "btn-archive mt-3" %>
+    <div class="index_candidates">
+      <% @employees.each do |employee| %>
+        <div class="card_candidate">
+          <h2><%= employee.name %></h2>
+          <h3><%= employee.unit %></h3>
+          <%= link_to 'delete', destroy_employee_path(employee), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn-details mt-5" %>
+          <%= link_to 'edit', edit_employee_path(employee), class: "btn-details mt-5" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

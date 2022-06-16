@@ -181,3 +181,35 @@
     text-decoration: none;
   }
 }
+
+
+
+.btn-archive{
+  font-family: 'Nunito';
+  text-decoration: none !important;
+  background: #1E2A51;
+  border-radius: 31px;
+  display: inline-block;
+  text-align: center;
+  font-family: 'Nunito';
+  font-style: normal;
+  border: none;
+  width: 130px;
+  height: 30px;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 5px 20px;
+  color: white;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+
+  a{
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none !important;
+    color: white;
+  }
+
+}
+
+.btn-archive:hover{
+  color: white;
+}
